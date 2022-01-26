@@ -2,7 +2,6 @@
  * Dictionary ©
  * Areen Rath
  * 
- * Licensed under the MIT License.
  */
 
 /**
