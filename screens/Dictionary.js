@@ -11,7 +11,7 @@ import SearchButton from '../components/SearchButton';
 import SpeechButton from '../components/SpeechButton';
 
 export default class Dictionary extends React.Component {
-    constructor(){
+    constructor() {
         super();
         this.state = {
             input: '',
@@ -37,11 +37,21 @@ export default class Dictionary extends React.Component {
                 // A word data array for storing the data.
                 var wordDataArr = [];
 
-                for(var i in responseJson){
-                    var meanings = responseJson[i].meanings;
-                    meanings.map(item => {
-                        wordDataArr.push([item.partOfSpeech.toUpperCase(), item.definitions[0].definition]);
-                    });
+                /**
+                 * We check whether the meaning of the word is present
+                 * with a key named title from response data. If title
+                 * is absent, then we fetch the data and if it's present
+                 * we show "Not Found" for the word.
+                 */
+                if(!responseJson.title) {
+                    for(var i in responseJson) {
+                        var meanings = responseJson[i].meanings;
+                        meanings.map(item => {
+                            wordDataArr.push([item.partOfSpeech.toUpperCase(), item.definitions[0].definition]);
+                        });
+                    }
+                } else {
+                    wordDataArr = [["NOT FOUND", "Not Found"]]
                 }
 
                 this.setState({

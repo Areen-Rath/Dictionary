@@ -21,7 +21,6 @@ const Drawer = createDrawerNavigator();
 
 export default class App extends React.Component {
   render(){
-    let props = this.props;
     return (
       <NavigationContainer>
         <Drawer.Navigator
